@@ -26,15 +26,24 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
 
-    if @post.update(post_params)
+    if @post.update(post_params)  #server-side check to understand updated or not.
       redirect_to @post
     else
       render 'edit'
+    end
+
   end
 
   def edit
-    @post = Post.find(params[:id])
+    @post = Post.find(params[:id])   #view that render
 
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+
+    redirect_to posts_path
   end
 
   private
